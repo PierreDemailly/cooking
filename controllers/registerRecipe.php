@@ -1,17 +1,6 @@
 <?php
 
-    session_start ();
-function chargerClasse($classname)
-{
-    if (file_exists('../models/' . $classname . '.php')) {
-        require '../models/' . $classname . '.php';
-    } else {
-        require '../entities/' . $classname . '.php';
-    }
-}
-spl_autoload_register('chargerClasse');
-$db = Database::DB();
-$recipeManager = new RecipeManager($db);
+$recipeManager = new RecipeManager();
 
 if (isset($_POST['name_recipe'])) {
     if (isset($_FILES['picture']) and $_FILES['picture']['error'] == 0) {
@@ -23,7 +12,7 @@ if (isset($_POST['name_recipe'])) {
             $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
             if (in_array($extension_upload, $extensions_autorisees)) {
                             // On peut valider le fichier et le stocker définitivement//
-                move_uploaded_file($_FILES['picture']['tmp_name'], '../assets/img/' . basename($_FILES['picture']['name']));
+                move_uploaded_file($_FILES['picture']['tmp_name'], './assets/img/' . basename($_FILES['picture']['name']));
     $objRecipeName = new Recipe([
         "namerecipe" => $_POST['name_recipe'],
         "picture" => $_FILES['picture']['name'],
@@ -42,6 +31,4 @@ $LastRecipe = $recipeManager->getLastRecipeName();
 
 
 
-include "../views/registerRecipeVue.php";
-
-
+include "./views/registerRecipeVue.php";

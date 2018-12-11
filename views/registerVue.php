@@ -5,7 +5,7 @@
 <section>
   <div class="container">
     <div class="row">
-        <form class="rounded mt-5 border border-dark col-12 col-md-8 mx-auto p-3 m-2 d-flex flex-column" action="register.php" method="post" enctype="multipart/form-data">
+        <form class="rounded mt-5 border border-dark col-12 col-md-8 mx-auto p-3 m-2 d-flex flex-column" method="post" enctype="multipart/form-data">
           <p class="mx-auto">Formulaire d'inscription</p>
 
           Pseudo : <input class="form-control" type="text" name="pseudo" placeholder="Pseudo">
