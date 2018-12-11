@@ -4,7 +4,7 @@ include("template/header.php")
 <section>
     <div class="container">
     <div class="size">
-                <img src="../assets/img/<?php echo $propriet->getAvatar(); ?>" alt="">
+                <img src="<?= $path ?>/assets/img/<?php echo $propriet->getAvatar(); ?>" alt="">
     </div>
         <div class="row flex-column"> 
             <h1 class="text-white mt-2 font-weight-bold mx-auto"><?php echo $recipeNameById->getNamerecipe(); ?></h1>
@@ -30,7 +30,7 @@ include("template/header.php")
             </ul>
             </div>
              
-            <form action="recipeDescription.php?id=<?php echo $_GET['id']; ?>" method="post">
+            <form action="<?= $path ?>/recipe_description/<?= $_GET['id']; ?>" method="post">
                 <input type="hidden" name="delete">
                 <button class="btn btn-danger" type="submit">Supprimer</button>
             </form>

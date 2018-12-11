@@ -1,12 +1,6 @@
 <?php
 
-class UserManager{
-    private $_db;
-
-    public function __construct(PDO $db)
-    {
-        $this->setDb($db);
-    }
+class UserManager extends Manager {
     /**
      * Get the value of _db
      */ 

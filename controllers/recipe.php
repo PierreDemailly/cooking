@@ -1,18 +1,10 @@
 <?php
-session_start();
-function chargerClasse($classname)
-{
-    if (file_exists('../models/' . $classname . '.php')) {
-        require '../models/' . $classname . '.php';
-    } else {
-        require '../entities/' . $classname . '.php';
-    }
-}
-spl_autoload_register('chargerClasse');
-$db = Database::DB();
-$recipeManager = new RecipeManager($db);
+
+if(!isset($_SESSION['user_id']))
+    header('Location: '.$path.'/login');
+    
+$recipeManager = new RecipeManager();
 
 $arrayOfObjRecipe = $recipeManager->getAllRecipesName();
 
-
-include "../views/recipeVue.php";
+include "./views/recipeVue.php";
