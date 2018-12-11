@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/normalize.css">
-  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="<?= $path ?>/assets/css/normalize.css">
+  <link rel="stylesheet" href="<?= $path ?>/assets/css/main.css">
 </head>
 
 <body>
@@ -31,24 +31,22 @@
           <ul class="navbar-nav mr-auto">
             <?php if (!isset($_SESSION['email'])) { ?>
             <li class="nav-item active">
-              <a class="nav-link" href="../controllers/index.php">Se connecter</a>
+              <a class="nav-link" href="<?= $path ?>/login">Se connecter</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../controllers/register.php">Inscription<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="<?= $path ?>/register">Inscription<span class="sr-only">(current)</span></a>
             </li>
             <?php 
           } ?>
             <?php if(isset($_SESSION['email'])){ ?>
               <li class="nav-item">
-              <a class="nav-link" href="../controllers/recipe.php">Les recettes</a>
+              <a class="nav-link" href="<?= $path ?>/recipe">Les recettes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../controllers/registerRecipe.php">Enregistrer une recette</a>
+              <a class="nav-link" href="<?= $path ?>/register_recipe">Enregistrer une recette</a>
             </li>
             <div class="d-flex justify-content-center">
-              <form action="index.php" method="post">
-                <input class="btn btn-danger" type="submit" name="deconnexion" value="Deconnexion">  
-              </form>
+              <a href="<?= $path ?>/logout" class="btn btn-danger">Déconnexion</a>
             </div>
             <?php } ?>
           </ul>
@@ -59,4 +57,3 @@
         </div>
       </nav>
     </header>
-  

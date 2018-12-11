@@ -1,11 +1,6 @@
 <?php
 
-class RecipeManager {
-        private $_db;
-        
-    public function __construct(PDO $db){
-        $this->setDb($db);
-    }
+class RecipeManager extends Manager {
 
     public function getRecipes(){
         $object_recipes = [];
@@ -64,6 +59,7 @@ class RecipeManager {
     }
 
     public function getRecipeNameById($id){
+        var_dump($id);
         $req = $this->getDb()->prepare('SELECT * FROM recipe WHERE id = :id');
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();

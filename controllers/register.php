@@ -1,18 +1,5 @@
 <?php
-session_start();
-function chargerClasse($classname)
-{
-    if (file_exists('../models/' . $classname . '.php')) {
-        require '../models/' . $classname . '.php';
-    } else {
-        require '../entities/' . $classname . '.php';
-    }
-}
-spl_autoload_register('chargerClasse');
-
-// On se connecte à la base de données
-$db = Database::DB();
-$userManager = new UserManager($db);
+$userManager = new UserManager();
 
 
 if (isset($_POST['pseudo']) and isset($_POST['pass'])) {
@@ -51,7 +38,8 @@ if (isset($_POST['pseudo']) and isset($_POST['pass'])) {
                                 ]);
                                 
                                 $userManager->addUser($user);
-                                header('Location: index.php');
+                                //TODO: connexion
+                                header('Location: '.$path.'/login');
                                 
                                 
                             } else {
@@ -87,11 +75,12 @@ if (isset($_POST['deconnexion'])) {
 
     setcookie('email', '');
     setcookie('pass', '');
-    header('Location:index.php');
+    //TODO: Connexion
+    header('Location: '.$path.'/login');
 }
 
 
 
-include "../views/registerVue.php";
+include "./views/registerVue.php";
 
 ?>

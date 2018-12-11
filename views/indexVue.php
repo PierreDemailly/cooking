@@ -5,7 +5,7 @@ include("template/header.php")
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 mx-auto mt-5 d-flex flex-column">
-         <form class="rounded border p-3 m-2 border-dark d-flex flex-column" action="index.php" method="post">
+         <form class="rounded border p-3 m-2 border-dark d-flex flex-column" method="post">
             <p class="mx-auto">Formulaire de connexion</p>
             Email : <input class="form-control" type="text" name="email" placeholder="Entrez votre email">
             Mot de passe : <input class="form-control" type="password" name="pass" placeholder="Entrez votre mot de passe">
@@ -20,9 +20,9 @@ include("template/header.php")
               </div>
                
             </div>
-            <button type="submit" class="col-6 mx-auto mt-5 btn btn-success">envoyer</button>
+            <button class="col-6 mx-auto mt-5 btn btn-success" name="login">envoyer</button>
         </form>
-        <a class="btn btn-success rounded border p-3 m-2 border-dark mx-auto" href="register.php">S'inscrire
+        <a class="btn btn-success rounded border p-3 m-2 border-dark mx-auto" href="<?= $path ?>/register">S'inscrire
         </a>
       </div>
     </div>
