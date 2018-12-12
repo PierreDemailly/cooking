@@ -30,7 +30,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <?php if (!isset($_SESSION['email'])) { ?>
+            <?php if (!isset($_SESSION['id'])) { ?>
             <li class="nav-item active">
               <a class="nav-link" href="<?= $path ?>/login">Se connecter</a>
             </li>
@@ -39,7 +39,7 @@
             </li>
             <?php 
           } ?>
-            <?php if(isset($_SESSION['email'])){ ?>
+            <?php if(isset($_SESSION['id'])){ ?>
               <li class="nav-item">
               <a class="nav-link" href="<?= $path ?>/recipe">Les recettes</a>
             </li>
