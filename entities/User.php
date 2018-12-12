@@ -3,7 +3,7 @@
 class User{
     protected $id,
             $pseudo,
-            $pass,
+            $password,
             $email,
             $date_inscription,
             $avatar;
@@ -64,7 +64,7 @@ class User{
     /**
      * Get the value of pass
      */ 
-    public function getPass()
+    public function getPassword()
     {
                 return $this->pass;
     }
@@ -74,7 +74,7 @@ class User{
      *
      * @return  self
      */ 
-    public function setPass($pass)
+    public function setPassword($pass)
     {
                 $this->pass = $pass;
 

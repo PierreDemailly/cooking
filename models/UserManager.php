@@ -42,9 +42,9 @@ class UserManager extends Manager {
      */
     public function addUser(User $user)
     {
-        $req = $this->db->prepare('INSERT INTO users (pseudo, pass, email, avatar) VALUES (:pseudo, :pass, :email, :avatar)');
+        $req = $this->db->prepare('INSERT INTO users (pseudo, password, email, avatar) VALUES (:pseudo, :pass, :email, :avatar)');
         $req->bindValue(':pseudo', $user->getPseudo(), PDO::PARAM_STR);
-        $req->bindValue(':pass', $user->getPass(), PDO::PARAM_STR);
+        $req->bindValue(':pass', $user->getPassword(), PDO::PARAM_STR);
         $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
         $req->bindValue(':avatar', $user->getAvatar(), PDO::PARAM_STR);
         $req->execute();
@@ -60,6 +60,19 @@ class UserManager extends Manager {
     {
         $req = $this->db->prepare('SELECT COUNT(id) FROM users WHERE email = :email');
         $req->bindValue('email', $email, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetchColumn() > 0;
+    }
+
+    /**
+     * Check if pseudo exist
+     * @param string $pseudo
+     * @return boolean
+     */
+    public function pseudoExist($pseudo)
+    {
+        $req = $this->db->prepare('SELECT COUNT(id) FROM users WHERE pseudo = :pseudo');
+        $req->bindValue('pseudo', $pseudo, PDO::PARAM_STR);
         $req->execute();
         return $req->fetchColumn() > 0;
     }
