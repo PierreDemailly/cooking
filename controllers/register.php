@@ -80,7 +80,6 @@ if (isset($_POST['deconnexion'])) {
 }
 
 
-
+include './views/template/header.php';
 include "./views/registerVue.php";
-
-?>
+include './views/template/footer.php';

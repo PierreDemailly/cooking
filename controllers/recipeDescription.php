@@ -22,5 +22,6 @@ if(isset($_POST['picture'])) {
     $recipeManager->addPictureRecipe($objPictureRecipe);
 }
 
-
+include './views/template/header.php';
 include "./views/recipeDescriptionVue.php";
+include './views/template/footer.php';

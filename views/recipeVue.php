@@ -1,6 +1,3 @@
-<?php
-include("template/header.php")
-?>
 <section>
 
         <div class="flex-wrap mt-5 p-3 d-flex justify-content-center">
@@ -18,7 +15,3 @@ include("template/header.php")
             </div>
             
 </section>
-
-<?php
-include("template/footer.php")
-?>

@@ -52,4 +52,6 @@ if(isset($_POST['login']))
     }
 }
         
+include './views/template/header.php';
 include './views/loginView.php';
+include './views/template/footer.php';

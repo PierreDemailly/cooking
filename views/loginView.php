@@ -1,6 +1,3 @@
-<?php
-include("template/header.php")
-?>
 <section>
   <div class="container">
     <div class="row">
@@ -41,7 +38,3 @@ include("template/header.php")
     </div>
   </div>
 </section>
-
-<?php
-include("template/footer.php")
-?>

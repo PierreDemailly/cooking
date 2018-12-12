@@ -1,6 +1,3 @@
-<?php
-include("template/header.php")
-?>
 <section>
     <div class="container">
         <h1 class="text-dark text-center"><?php echo $LastRecipe->getNamerecipe(); ?></h1>
@@ -16,6 +13,3 @@ include("template/header.php")
             </div>
     </div>
 </section>
-<?php
-include("template/footer.php")
-?>

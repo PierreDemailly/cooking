@@ -1,5 +1,4 @@
 <?php
-
 $recipeManager = new RecipeManager();
 
 if (isset($_POST['name_recipe'])) {
@@ -25,10 +24,9 @@ if (isset($_POST['name_recipe'])) {
     }
 }
 
-
 $data_recipes = $recipeManager->getRecipes();
 $LastRecipe = $recipeManager->getLastRecipeName();
 
-
-
+include './views/template/header.php';
 include "./views/registerRecipeVue.php";
+include './views/template/footer.php';
