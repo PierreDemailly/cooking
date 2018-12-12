@@ -5,7 +5,7 @@ if(!isset($_SESSION['id']))
     
 $recipeManager = new RecipeManager();
 
-$arrayOfObjRecipe = $recipeManager->getAllRecipesName();
+$recipes = $recipeManager->getRecipes();
 
 include './views/template/header.php';
 include "./views/recipeVue.php";

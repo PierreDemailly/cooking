@@ -1,18 +1,17 @@
 <?php
-
+/**
+ * Class representing a Recipe manager
+ */
 class RecipeManager extends Manager {
-
-    public function getRecipes(){
-        $object_recipes = [];
+    /**
+     * Get all recipes
+     * @return array<Recipe>
+     */
+    public function getRecipes()
+    {
         $req = $this->db->query('SELECT * FROM recipe');
-        $data_recipes = $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($data_recipes as $recip) {
-            $object_recipes[] = new Recipe($recip);
-
-        }
-        
-         return $object_recipes;
-        
+        while ($recipe = $req->fetch()) { $recipes[] = new Recipe($recipe); }
+        return $recipes;
     }
 
     public function getLastRecipeName(){
@@ -27,25 +26,25 @@ class RecipeManager extends Manager {
         
     }
     public function addRecipeName(Recipe $objRecipeName){
-        $req = $this->db->prepare('INSERT INTO recipe(namerecipe, picture, userid) VALUES(:name_recipe, :picture, :userid)');
-        $req->bindValue(':name_recipe', $objRecipeName->getNamerecipe(), PDO::PARAM_STR);
+        $req = $this->db->prepare('INSERT INTO recipe(name, picture, user_id) VALUES(:name_recipe, :picture, :user_id)');
+        $req->bindValue(':name_recipe', $objRecipeName->getname(), PDO::PARAM_STR);
         $req->bindValue(':picture', $objRecipeName->getPicture(), PDO::PARAM_STR);
-        $req->bindValue(':userid', $objRecipeName->getUserid(), PDO::PARAM_STR);
+        $req->bindValue(':user_id', $objRecipeName->getuser_id(), PDO::PARAM_STR);
         $req->execute();
     }
 
     public function addRecipeStep($getId, $postStep){
-        $req = $this->db->prepare('INSERT INTO step(descriptionStep, recipeId) VALUES(:descriptionStep, :recipeId)');
-        $req->bindValue(':descriptionStep', $postStep, PDO::PARAM_STR);
-        $req->bindValue(':recipeId', $getId, PDO::PARAM_INT);
+        $req = $this->db->prepare('INSERT INTO step(description, id) VALUES(:description, :id)');
+        $req->bindValue(':description', $postStep, PDO::PARAM_STR);
+        $req->bindValue(':id', $getId, PDO::PARAM_INT);
         $req->execute();
     }
 
     public function addRecipeIngredient($postIngredient, $getId)
     {
-        $req = $this->db->prepare('INSERT INTO ingredient(descriptionIngredient, recipeId) VALUES(:descriptionIngredient, :recipeId)');
+        $req = $this->db->prepare('INSERT INTO ingredient(descriptionIngredient, id) VALUES(:descriptionIngredient, :id)');
         $req->bindValue(':descriptionIngredient', $postIngredient, PDO::PARAM_STR);
-        $req->bindValue(':recipeId', $getId, PDO::PARAM_STR);
+        $req->bindValue(':id', $getId, PDO::PARAM_STR);
         $req->execute();
     }
 
@@ -58,37 +57,32 @@ class RecipeManager extends Manager {
         return $arrayObjRecipes;
     }
 
-    public function getRecipeNameById($id){
-        var_dump($id);
+    public function getRecipe($id)
+    {
         $req = $this->db->prepare('SELECT * FROM recipe WHERE id = :id');
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
-        $data_recipe = $req->fetch(PDO::FETCH_ASSOC);
-        $objRecipe = new Recipe($data_recipe);
-      
-        return $objRecipe;
+
+        return new Recipe($req->fetch());
     }
-    public function getIngredientById($getId){
-        $arrayObjIngredient = [];
-        $req = $this->db->prepare('SELECT * FROM ingredient WHERE recipeId = :recipeId');
-        $req->bindValue(':recipeId', $getId, PDO::PARAM_INT);
+
+    public function getIngredient($recipe_id)
+    {
+        $req = $this->db->prepare('SELECT * FROM ingredient WHERE recipe_id = :recipe_id');
+        $req->bindValue(':recipe_id', $recipe_id, PDO::PARAM_INT);
         $req->execute();
-        $data_ingredients = $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach($data_ingredients as $ingredient){
-            $arrayObjIngredient[] = new Ingredient($ingredient);
-        }
-        return $arrayObjIngredient;
+
+        while ($ingredient = $req->fetch()) { $ingredients[] = new Ingredient($ingredient); }
+        return $ingredients;
     }
      
-    public function getStepById($id){
-        $req = $this->db->prepare('SELECT * FROM step WHERE recipeId = :recipeId');
-        $req->bindValue(':recipeId', $id, PDO::PARAM_INT);
+    public function getStep($recipe_id){
+        $req = $this->db->prepare('SELECT * FROM step WHERE recipe_id = :recipe_id');
+        $req->bindValue(':recipe_id', $recipe_id, PDO::PARAM_INT);
         $req->execute();
-        $data_steps = $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach($data_steps as $step){
-            $arrayObjStep [] = new Step($step);
-        }
-        return $arrayObjStep;
+        
+        while ($step = $req->fetch()) { $steps[] = new Step($step); }
+        return $steps;
     }
 
     public function deleteRecipe($id){
@@ -99,9 +93,9 @@ class RecipeManager extends Manager {
     }
 
     // public function addPictureRecipe(PictureRecipe $picture){
-    //     $req = $this->db->prepare('INSERT INTO pictures(picture, recipeId) VALUES(:picture, :recipeId)');
+    //     $req = $this->db->prepare('INSERT INTO pictures(picture, id) VALUES(:picture, :id)');
     //     $req->bindValue(':picture', $picture->getPicture(), PDO::PARAM_INT);
-    //     $req->bindValue(':recipeId', $picture->getREcipeId(), PDO::PARAM_STR);
+    //     $req->bindValue(':id', $picture->getid(), PDO::PARAM_STR);
     //     $req->execute();
     // }
 

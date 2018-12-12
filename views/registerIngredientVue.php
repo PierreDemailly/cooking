@@ -1,6 +1,6 @@
 <section>
     <div class="container">
-        <h1 class="text-dark text-center"><?php echo $LastRecipe->getNamerecipe(); ?></h1>
+        <h1 class="text-dark text-center"><?php echo $LastRecipe->getname(); ?></h1>
         <form class="p-5" action="<?= $path ?>/register_ingredient/<?php echo $LastRecipe->getId(); ?>" method="post">
             <input class="form-control" type="text" name="ingredient" placeholder="Ohu !! un ingredient a la fois." required>
             <div class="row">

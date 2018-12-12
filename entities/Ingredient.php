@@ -1,82 +1,50 @@
 <?php
-
-class Ingredient{
-    protected $idIngredient,
-            $descriptionIngredient,
-            $recipeId;
-
-    public function __construct(array $array)
-    {
-        $this->hydrate($array);
-    }
-
-    public function hydrate(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $method = 'set' . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
+/**
+ * Class representing an ingredient
+ */
+class Ingredient extends Entity {
+    /**
+     * @var int $id
+     * @var string $description
+     * @var int $recipe_id
+     */
+    protected $id,
+              $description,
+              $recipe_id;
 
     /**
-     * Get the value of idIngredient
+     * Get the value of id
+     * @return int
      */ 
-    public function getIdIngredient()
-    {
-        return $this->idIngredient;
-    }
+    public function getId() { return $this->id; }
 
     /**
-     * Set the value of idIngredient
-     *
-     * @return  self
+     * Set the value of id
+     * @return self
      */ 
-    public function setIdIngredient($idIngredient)
-    {
-        $this->idIngredient = $idIngredient;
-
-        return $this;
-    }
+    public function setId($id) { $this->id = $id; return $this; }
 
     /**
-     * Get the value of descriptionIngredient
+     * Get the value of description
+     * @return string
      */ 
-    public function getDescriptionIngredient()
-    {
-        return $this->descriptionIngredient;
-    }
+    public function getDescription() { return $this->description; }
 
     /**
-     * Set the value of descriptionIngredient
-     *
-     * @return  self
+     * Set the value of description
+     * @return self
      */ 
-    public function setDescriptionIngredient($descriptionIngredient)
-    {
-        $this->descriptionIngredient = $descriptionIngredient;
-
-        return $this;
-    }
+    public function setDescription($description) { $this->description = $description; return $this; }
 
     /**
-     * Get the value of recipeId
+     * Get the value of recipe_id
+     * @return int
      */ 
-    public function getRecipeId()
-    {
-        return $this->recipeId;
-    }
+    public function getRecipe_id() { return $this->id; }
 
     /**
-     * Set the value of recipeId
-     *
-     * @return  self
+     * Set the value of id
+     * @return self
      */ 
-    public function setRecipeId($recipeId)
-    {
-        $this->recipeId = $recipeId;
-
-        return $this;
-    }
+    public function setRecipe_id($id) { $this->id = $id; return $this; }
 }
