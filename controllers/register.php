@@ -4,7 +4,18 @@ $userManager = new UserManager();
 // user must not be here if he already logged in
 if(isset($_SESSION['id']))
     header('Location: '.$path.'/recipe');
-    
+
+elseif(isset($_COOKIE['cooking_auth_token'])) 
+{
+    if($userManager->tokenVerify($_COOKIE['cooking_auth_token']))
+    {
+        $_SESSION['id'] = $userManager->getUserFromToken($_COOKIE['cooking_auth_token'])->getId();
+        header('Location: '.$path.'/recipe');
+    }
+    else
+        unset($_COOKIE['cooking_auth_token']);
+}
+
 if (isset($_POST['register'])) 
 {
     $errors = array();
