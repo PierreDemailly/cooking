@@ -2,7 +2,7 @@
 
 $userManager = new UserManager();
 if(isset($_SESSION['user_id']))
-    header('Location: ./recipe');
+    header('Location: '.$path.'/recipe');
 
     if(isset($_POST['login']))
     {
@@ -15,7 +15,7 @@ if(isset($_SESSION['user_id']))
                     $_SESSION['pseudo'] = $data_user->getPseudo();
                     $_SESSION['email'] = $data_user->getEmail();
                     $_SESSION['avatar'] = $data_user->getAvatar();
-                    header('Location: ./recipe');
+                    header('Location: '.$path.'/recipe');
                 }else{
                     echo 'Le mot de passe est incorrecte';
                 }
