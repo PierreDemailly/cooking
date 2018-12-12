@@ -1,57 +1,24 @@
 <?php
-
+/**
+ * Class representing a User manager
+ */
 class UserManager extends Manager {
-    
-
-    public function addUser(User $user){
-        $req = $this->getDb()->prepare('INSERT INTO users(pseudo, pass, email, avatar) VALUES (:pseudo, :pass, :email, :avatar)');
-        $req->bindValue(':pseudo', $user->getPseudo(), PDO::PARAM_STR);
-        $req->bindValue(':pass', $user->getPass(), PDO::PARAM_STR);
-        $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
-        $req->bindValue(':avatar', $user->getAvatar());
-        $req->execute();
-    }
-
-    public function exist($arg_pseudo)
+    /**
+     * Get all users
+     * @return array<User>
+     */
+    public function getUsers()
     {
-        $req = $this->getDb()->prepare('SELECT * FROM users WHERE pseudo = :pseudo');
-        $req->bindValue(':pseudo', $arg_pseudo, PDO::PARAM_STR);
-        $req->execute();
-        $rep = $req->fetch();
-        return $rep;
+        $req = $this->db->query('SELECT * FROM users');
+        while ($user = $req->fetch()) { $users[] = new User($user); }
+        return $users;
     }
 
-    public function getUsers(){
-        $req = $this->getDb()->query('SELECT * FROM users');
-        $data_users = $req->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data_users);
-    }
-
-    public function getUSerbypseudo($email){
-        $req = $this->getDb()->prepare('SELECT * FROM users WHERE email = :email');
-        $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->execute();
-        $rep = $req->fetch();
-        $data_user = new User($rep);
-        return $data_user;
-    }
-
-    public function emailExist($email)
-    {
-        $req = $this->db->prepare('SELECT COUNT(id) FROM users WHERE email = :email');
-        $req->bindValue('email', $email, PDO::PARAM_STR);
-        $req->execute();
-        return $req->fetchColumn() > 0;
-    }
-
-    public function passwordVerify($email, $pass)
-    {
-        $req = $this->db->prepare('SELECT pass FROM users WHERE email = :email');
-        $req->bindValue('email', $email, PDO::PARAM_STR);
-        $req->execute();
-        return password_verify($pass, $req->fetch()['pass']);
-    }
-
+    /**
+     * Get a user with id or email
+     * @param int|string $id
+     * @return User
+     */
     public function getUser($id)
     {
         if(ctype_digit($id))
@@ -68,6 +35,55 @@ class UserManager extends Manager {
         return new User($req->fetch(PDO::FETCH_ASSOC));
     }
 
+    /**
+     * Add a User (pseudo, email, pass, avatar) to database
+     * @param User $user
+     * @return void
+     */
+    public function addUser(User $user)
+    {
+        $req = $this->db->prepare('INSERT INTO users (pseudo, pass, email, avatar) VALUES (:pseudo, :pass, :email, :avatar)');
+        $req->bindValue(':pseudo', $user->getPseudo(), PDO::PARAM_STR);
+        $req->bindValue(':pass', $user->getPass(), PDO::PARAM_STR);
+        $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+        $req->bindValue(':avatar', $user->getAvatar(), PDO::PARAM_STR);
+        $req->execute();
+        return;
+    }
+
+    /**
+     * Check if email exist
+     * @param string $email
+     * @return boolean
+     */
+    public function emailExist($email)
+    {
+        $req = $this->db->prepare('SELECT COUNT(id) FROM users WHERE email = :email');
+        $req->bindValue('email', $email, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetchColumn() > 0;
+    }
+
+    /**
+     * Verify if the password is correct
+     * @param string $email
+     * @param string $pass
+     * @return boolean
+     */
+    public function passwordVerify($email, $pass)
+    {
+        $req = $this->db->prepare('SELECT pass FROM users WHERE email = :email');
+        $req->bindValue('email', $email, PDO::PARAM_STR);
+        $req->execute();
+        return password_verify($pass, $req->fetch()['pass']);
+    }
+
+    /**
+     * Set an auth-token to a User
+     * @param User $user
+     * @param string $token
+     * @return void
+     */
     public function setUserToken($user, $token)
     {
         $req = $this->db->prepare('UPDATE users SET token = :token WHERE id = :id');
