@@ -16,7 +16,7 @@ if (isset($_POST['name_recipe'])) {
     $objRecipeName = new Recipe([
         "namerecipe" => $_POST['name_recipe'],
         "picture" => $_FILES['picture']['name'],
-        "userid" => $_SESSION['user_id']
+        "userid" => $_SESSION['id']
     ]);
         var_dump($_FILES['picture']);
   $recipeManager->addRecipeName($objRecipeName);

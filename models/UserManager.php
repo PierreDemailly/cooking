@@ -1,25 +1,7 @@
 <?php
 
 class UserManager extends Manager {
-    /**
-     * Get the value of _db
-     */ 
-    public function getDb()
-    {
-        return $this->_db;
-    }
-
-    /**
-     * Set the value of _db
-     *
-     * @return  self
-     */ 
-    public function setDb($db)
-    {
-        $this->_db = $db;
-
-        return $this;
-    }
+    
 
     public function addUser(User $user){
         $req = $this->getDb()->prepare('INSERT INTO users(pseudo, pass, email, avatar) VALUES (:pseudo, :pass, :email, :avatar)');
@@ -52,6 +34,45 @@ class UserManager extends Manager {
         $rep = $req->fetch();
         $data_user = new User($rep);
         return $data_user;
+    }
 
+    public function emailExist($email)
+    {
+        $req = $this->db->prepare('SELECT COUNT(id) FROM users WHERE email = :email');
+        $req->bindValue('email', $email, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetchColumn() > 0;
+    }
+
+    public function passwordVerify($email, $pass)
+    {
+        $req = $this->db->prepare('SELECT pass FROM users WHERE email = :email');
+        $req->bindValue('email', $email, PDO::PARAM_STR);
+        $req->execute();
+        return password_verify($pass, $req->fetch()['pass']);
+    }
+
+    public function getUser($id)
+    {
+        if(ctype_digit($id))
+        { 
+            $req = $this->db->prepare('SELECT * FROM users WHERE id = :id');
+            $req->bindValue('id', $id, PDO::PARAM_INT);
+        }
+        else 
+        {
+            $req = $this->db->prepare('SELECT * FROM users WHERE email = :email');
+            $req->bindValue('email', $id, PDO::PARAM_STR);
+        }
+        $req->execute();
+        return new User($req->fetch(PDO::FETCH_ASSOC));
+    }
+
+    public function setUserToken($user, $token)
+    {
+        $req = $this->db->prepare('UPDATE users SET token = :token WHERE id = :id');
+        $req->bindValue('token', $token, PDO::PARAM_STR);
+        $req->bindValue('id', $user->getId(), PDO::PARAM_INT);
+        $req->execute();
     }
 }

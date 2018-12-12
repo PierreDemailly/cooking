@@ -115,23 +115,5 @@ class RecipeManager extends Manager {
     //     }
     //     return $objPicture;
     // }
-    /**
-     * Get the value of _db
-     */ 
-    public function getDb()
-    {
-            return $this->_db;
-    }
 
-    /**
-     * Set the value of _db
-     *
-     * @return  self
-     */ 
-    public function setDb($db)
-    {
-            $this->_db = $db;
-
-            return $this;
-    }
 }

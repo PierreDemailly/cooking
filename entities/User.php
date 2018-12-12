@@ -1,7 +1,7 @@
 <?php 
 
 class User{
-    protected $id_user,
+    protected $id,
             $pseudo,
             $pass,
             $email,
@@ -22,21 +22,21 @@ class User{
         }
     }
     /**
-     * Get the value of id_user
+     * Get the value of id
      */ 
-    public function getIdUser()
+    public function getId()
     {
-        return $this->id_user;
+        return $this->id;
     }
 
     /**
-     * Set the value of id_user
+     * Set the value of id
      *
      * @return  self
      */ 
-    public function setIdUser($idUser)
+    public function setId($id)
     {
-        $this->id_user = $idUser;
+        $this->id = $id;
 
         return $this;
     }
