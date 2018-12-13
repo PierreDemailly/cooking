@@ -1,105 +1,64 @@
 <?php
-
-class Recipe{
+/**
+ * Class representing a recipe
+ */
+class Recipe extends Entity {
+    /**
+     * @var int $id 
+     * @var string $name 
+     * @var string $picture 
+     * @var int $user_id
+     */
     protected $id,
-              $namerecipe,
+              $name,
               $picture,
-              $userid;
-
-
-    public function __construct(array $array)
-    {
-        $this->hydrate($array);
-    }
-
-    public function hydrate(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $method = 'set' . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
-    
+              $user_id;
 
     /**
      * Get the value of id
+     * @return int
      */ 
-    public function getId()
-    {
-        return $this->id;
-    }
+    public function getId() { return $this->id; }
 
     /**
      * Set the value of id
-     *
-     * @return  self
+     * @return self
      */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    public function setId($id) { $this->id = $id; return $this; }
 
     /**
-     * Get the value of namerecipe
+     * Get the value of name
+     * @return string
      */ 
-    public function getNamerecipe()
-    {
-                return $this->namerecipe;
-    }
+    public function getName() { return $this->name; }
 
     /**
-     * Set the value of namerecipe
-     *
-     * @return  self
+     * Set the value of name
+     * @return self
      */ 
-    public function setNamerecipe($namerecipe)
-    {
-                $this->namerecipe = $namerecipe;
-
-                return $this;
-    }
+    public function setName($name) { $this->name = $name; return $this; }
 
     /**
-     * Get the value of userid
+     * Get the value of user_id
+     * @return int
      */ 
-    public function getUserid()
-    {
-                return $this->userid;
-    }
+    public function getUser_id() { return $this->user_id; }
 
     /**
-     * Set the value of userid
-     *
-     * @return  self
+     * Set the value of user_id
+     * @return self
      */ 
-    public function setUserid($userid)
-    {
-                $this->userid = $userid;
-
-                return $this;
-    }
+    public function setUser_id($user_id) { $this->user_id = $user_id; return $this; }
 
     /**
      * Get the value of picture
+     * @return string
      */ 
-    public function getPicture()
-    {
-        return $this->picture;
-    }
+    public function getPicture() { return $this->picture; }
 
     /**
      * Set the value of picture
-     *
-     * @return  self
+     * @return self
      */ 
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
+    public function setPicture($picture) { $this->picture = $picture; return $this; }
 }

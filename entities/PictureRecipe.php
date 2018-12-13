@@ -3,7 +3,7 @@
 class PictureRecipe{
     protected $idPicture,
         $picture,
-        $recipeId;
+        $id;
 
     public function __construct(array $array)
     {
@@ -61,21 +61,21 @@ class PictureRecipe{
     }
 
     /**
-     * Get the value of recipeId
+     * Get the value of id
      */ 
-    public function getRecipeId()
+    public function getid()
     {
-        return $this->recipeId;
+        return $this->id;
     }
 
     /**
-     * Set the value of recipeId
+     * Set the value of id
      *
      * @return  self
      */ 
-    public function setRecipeId($recipeId)
+    public function setId($id)
     {
-        $this->recipeId = $recipeId;
+        $this->id = $id;
 
         return $this;
     }

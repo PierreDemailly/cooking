@@ -1,5 +1,4 @@
 <?php
-
 $recipeManager = new RecipeManager();
 
 if (isset($_POST['name_recipe'])) {
@@ -14,9 +13,9 @@ if (isset($_POST['name_recipe'])) {
                             // On peut valider le fichier et le stocker définitivement//
                 move_uploaded_file($_FILES['picture']['tmp_name'], './assets/img/' . basename($_FILES['picture']['name']));
     $objRecipeName = new Recipe([
-        "namerecipe" => $_POST['name_recipe'],
+        "name" => $_POST['name_recipe'],
         "picture" => $_FILES['picture']['name'],
-        "userid" => $_SESSION['user_id']
+        "user_id" => $_SESSION['id']
     ]);
         var_dump($_FILES['picture']);
   $recipeManager->addRecipeName($objRecipeName);
@@ -25,10 +24,9 @@ if (isset($_POST['name_recipe'])) {
     }
 }
 
-
 $data_recipes = $recipeManager->getRecipes();
 $LastRecipe = $recipeManager->getLastRecipeName();
 
-
-
+include './views/template/header.php';
 include "./views/registerRecipeVue.php";
+include './views/template/footer.php';
