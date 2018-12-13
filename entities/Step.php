@@ -2,7 +2,7 @@
 /**
  * Class representing a step
  */
-class Step{
+class Step extends Entity{
     /**
      * @var int $id
      * @var string $description
@@ -28,7 +28,7 @@ class Step{
      * Get the value of description
      * @return string
      */ 
-    public function getdescription() { return $this->description; }
+    public function getDescription() { return $this->description; }
 
     /**
      * Set the value of description

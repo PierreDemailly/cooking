@@ -17,7 +17,6 @@ if (isset($_POST['name_recipe'])) {
         "picture" => $_FILES['picture']['name'],
         "user_id" => $_SESSION['id']
     ]);
-        var_dump($_FILES['picture']);
   $recipeManager->addRecipeName($objRecipeName);
  }
 }
