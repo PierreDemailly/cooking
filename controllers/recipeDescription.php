@@ -1,7 +1,6 @@
 <?php
 $recipeManager = new RecipeManager();
 $userManager = new UserManager();
-
 $recipe = $recipeManager->getRecipe($_GET['id']);
 
 $ingredients = $recipeManager->getIngredient($_GET['id']);
