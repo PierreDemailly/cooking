@@ -85,10 +85,10 @@ class UserManager extends Manager {
      */
     public function passwordVerify($email, $pass)
     {
-        $req = $this->db->prepare('SELECT pass FROM users WHERE email = :email');
+        $req = $this->db->prepare('SELECT password FROM users WHERE email = :email');
         $req->bindValue('email', $email, PDO::PARAM_STR);
         $req->execute();
-        return password_verify($pass, $req->fetch()['pass']);
+        return password_verify($pass, $req->fetch()['password']);
     }
 
     /**
