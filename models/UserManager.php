@@ -104,4 +104,11 @@ class UserManager extends Manager {
         $req->bindValue('id', $user->getId(), PDO::PARAM_INT);
         $req->execute();
     }
+
+    // public function getUserByRecip($getId){
+    //     $req = $this->db->prepare('SELECT * FROM users WHERE id = :Id');
+    //     $req->bindValue('getId', $getId, PDO::PARAM_INT);
+    //     $req->execute();
+    //     return new User($req->fetch(PDO::FETCH_ASSOC));
+    // }
 }
