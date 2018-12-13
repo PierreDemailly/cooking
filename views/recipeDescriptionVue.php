@@ -8,7 +8,7 @@
         <div class="bg-light p-5 row d-flex justify-content-center">
             <div class="d-flex flex-column col-md-6">
                 <ul>
-                <?php foreach ($ingredients as $ingredient): ?>
+                <?php foreach ($ingredients as $ingredient) : ?>
 
                     <ol><i class="fa fa-carrot"></i><?php echo $ingredient->getDescription(); ?></ol>
                 <?php endforeach; ?>
@@ -16,7 +16,7 @@
             </div>
             <div class="d-flex flex-column col-md-6 mb-5">
                 
-                <?php foreach ($steps as $step): ?>
+                <?php foreach ($steps as $step) : ?>
                 <i class="fas fa-utensils"></i>     
                 <!-- <img class="icon" src="<?= $path ?>/assets/img/chef.jpg" alt=""> -->
                 <ul>
