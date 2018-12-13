@@ -1,6 +1,6 @@
 <section>
     <div class="container">
-
+      
         <div class="row flex-column"> 
             <h1 class="text-white mt-2 font-weight-bold mx-auto"><?php echo $recipe->getname(); ?></h1>
         </div>
