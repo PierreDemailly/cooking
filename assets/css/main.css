@@ -120,7 +120,7 @@ form{
 }
 
 .size{
-    display:none;
+    opacity: 1!important;
 }
 
 img{
@@ -137,8 +137,13 @@ img{
     height: 157px;
 }
 
-img{
+.card{
     opacity: 0.5;
+    transition: 0.5s;
+}
+
+.card:hover{
+    opacity: 1;
 }
 
 img:hover{
@@ -148,7 +153,8 @@ img:hover{
 
 .card-body{
     background-color:black;
-    opacity: 0.5;
+    
+    opacity: 1;
 }
 .card-body:hover{
     opacity: 1;
@@ -157,6 +163,28 @@ img:hover{
 .sizeDiv{
     width: 100%;
     height: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.fas{
+    color:#daa24b;
+}
+
+.fa{
+    margin-right: 15px;
+    color: #f44242;
+}
+
+.absolute{
+    position: absolute;
+    top: 100px;
+    left: 50px;
+}
+a:hover{
+    text-decoration: none;
 }
 
 /* ##################################################################### */
@@ -170,8 +198,12 @@ img:hover{
 /* ############################   TABLETS   ############################ */
 /* ##################################################################### */
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-
+@media (min-width: 600px) {
+    .size {
+     
+      width: 100px;
+      border: 1px solid gray;
+    }
 }
 
 /* ##################################################################### */
@@ -179,13 +211,7 @@ img:hover{
 /* ##################################################################### */
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    .size {
-        position: absolute;
-        top: 90px;
-        left: 35px;
-        width: 100px;
-        border: 1px solid gray;
-    }
+
 }
 
 /* ##################################################################### */
