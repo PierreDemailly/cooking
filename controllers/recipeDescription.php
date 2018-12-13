@@ -5,17 +5,16 @@ $recipe = $recipeManager->getRecipe($_GET['id']);
 
 $ingredients = $recipeManager->getIngredient($_GET['id']);
 $steps = $recipeManager->getStep($_GET['id']);
-$user =  $userManager->getUser($_SESSION['id']);
+$user = $userManager->getUser($_SESSION['id']);
 $author = $userManager->getUser($recipe->getUser_id());
 
-if(isset($_POST['delete']))
-{
+if (isset($_POST['delete'])) {
     $recipeManager->deleteRecipe($_GET['id']);
-    header('Location: '.$path.'/recipe');
+    header('Location: ' . $path . '/recipe');
 }
 
 
-if(isset($_POST['picture'])) {
+if (isset($_POST['picture'])) {
     //TODO: continuer le refactoring ici
     $objPictureRecipe = new PictureRecipe([
         "picture" => $_POST['picture'],
