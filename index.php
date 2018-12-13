@@ -31,7 +31,10 @@ if(isset($_GET['page']))
       break;
     case 'register_recipe':
 			require './controllers/registerRecipe.php';
-      break;
+			break;
+		case 'register_ingredient':
+			require './controllers/registerIngredient.php';
+			break;
     case 'register_step':
 			require './controllers/registerStep.php';
       break;

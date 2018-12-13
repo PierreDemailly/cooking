@@ -1,86 +1,62 @@
 <?php
 $userManager = new UserManager();
 
+// user must not be here if he already logged in
+if(isset($_SESSION['id']))
+    header('Location: '.$path.'/recipe');
 
-if (isset($_POST['pseudo']) and isset($_POST['pass'])) {
-    $pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-//secure html charactere for all variable//
-    $pass = htmlspecialchars($_POST['pass']);
-    $pass_2 = htmlspecialchars($_POST['pass_2']);
-    $pseudo = htmlspecialchars($_POST['pseudo']);
-    $email = htmlspecialchars($_POST['email']);
-    $avatar = $_FILES['avatar']['name'];
-  //if variable is not empty//
-    if (!empty($pseudo) and !empty($pass)) {
-    //if mail is valide using REGEX//
-        if (preg_match("#^[a-z0-9-._]+@[a-z0-9-._]{2,}\.[a-z]{2,4}$#", $email)) {
-      //if pseudo is already use//
-            if ($userManager->exist($_POST['pseudo']) === FALSE) {
-        //if password is already use//
-                if ($pass == $pass_2) {
-          // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur//
-                    if (isset($_FILES['avatar']) and $_FILES['avatar']['error'] == 0) {
-            // Testons si le fichier n'est pas trop gros//
-                        if ($_FILES['avatar']['size'] <= 1000000) {
-                    // Testons si l'extension est autorisée//
-                            $infosfichier = pathinfo($_FILES['avatar']['name']);
-                            $extension_upload = $infosfichier['extension'];
-                            $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
-                            if (in_array($extension_upload, $extensions_autorisees)) {
-                            // On peut valider le fichier et le stocker définitivement//
-                                move_uploaded_file($_FILES['avatar']['tmp_name'], '../assets/img/' . basename($_FILES['avatar']['name']));
-                            // echo "L'envoi a bien été effectué !";
-                                $user = new User([
-                                    "pseudo" => $pseudo,
-                                    "pass"=> $pass_hache,
-                                    "email"=>$email,
-                                    "avatar"=>$avatar
-                                ]);
-                                
-                                $userManager->addUser($user);
-                                //TODO: connexion
-                                header('Location: '.$path.'/login');
-                                
-                                
-                            } else {
-                                echo "le format du fichier n'est pas autorisé(jpg, jpeg, gif, png)";
-                            }
-                        } else {
-                            echo "la taille du fichier est superieur a 1mo";
-                        }
-                    } else {
-                        echo "probleme lors de l'envoi";
-                    }
-                } else {
-                    echo "les mots de passe sont differents";
-                }
-            } else {
-                echo "le pseudo est deja utilisé";
-            }
-        } else {
-            echo "l'adresse email n'est pas valide";
-        }
-    } else {
-        echo "le champ du pseudo ou du mot est vide";
+elseif(isset($_COOKIE['cooking_auth_token'])) 
+{
+    if($userManager->tokenVerify($_COOKIE['cooking_auth_token']))
+    {
+        $_SESSION['id'] = $userManager->getUserFromToken($_COOKIE['cooking_auth_token'])->getId();
+        header('Location: '.$path.'/recipe');
+    }
+    else
+        unset($_COOKIE['cooking_auth_token']);
+}
+
+if (isset($_POST['register'])) 
+{
+    $errors = array();
+
+    if(empty($_POST['pseudo']) OR empty($_POST['password']) OR empty($_POST['password-v']) or empty($_POST['email']) or empty($_FILES['avatar']))
+        $errors['form'] = "Veuillez remplir tous les champs.";
+
+    if(strlen($_POST['pseudo']) < 3 OR strlen($_POST['pseudo'] > 26))
+        $errors['pseudo'] = "Votre pseudo doit faire entre 3 et 26 caractères";
+    elseif($userManager->pseudoExist($_POST['pseudo']))
+        $errors['pseudo'] = "Votre pseudo est déjà pris.";
+
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+        $errors['email'] = "Veuillez entrer une adresse mail valide.";
+    elseif($userManager->emailExist($_POST['email']))
+        $errors['email'] = "Cette adresse email est déjà associée à un compte.";
+    
+    if($_POST['password'] !== $_POST['password-v'])
+        $errors['password'] = $errors['password-v'] = "Les mots de passe doivent être identique.";
+
+    if($_FILES['avatar']['error'] !== 0)
+        $errors['avatar'] = "Il y a eu un problème lors de l'envoie du fichier.";
+    elseif($_FILES['avatar']['size'] > 1000000)
+        $errors['avatar'] = "Votre image est trop volumineuse.";
+    elseif(!in_array(pathinfo($_FILES['avatar']['name'])['extension'], ['jpg', 'jpeg', 'png']))
+        $errors['avatar'] = "Le format de votre image n'est pas autorisé (jpg, jpeg, png).";
+
+    if(empty($errors))
+    {
+        move_uploaded_file($_FILES['avatar']['tmp_name'], './assets/img/avatars/'.basename($_FILES['avatar']['name']));
+        
+        $user = new User($_POST);
+        $user->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
+        $user->setAvatar(basename($_FILES['avatar']['name']));
+        $userManager->addUser($user);
+
+        $_SESSION['id'] = $userManager->getUser($_POST['email'])->getId();
+        header('Location: '.$path.'/recipe');
     }
 }
 
-
-if (isset($_POST['deconnexion'])) {
-    // Suppression des variables de session et de la session
-    $_SESSION = array();
-    session_destroy();
-
-// Suppression des cookies de connexion automatique
-
-    setcookie('email', '');
-    setcookie('pass', '');
-    //TODO: Connexion
-    header('Location: '.$path.'/login');
-}
-
-
-
-include "./views/registerVue.php";
-
-?>
+include './views/template/header.php';
+include "./views/registerView.php";
+include './views/template/footer.php';

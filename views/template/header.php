@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?= $path ?>/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= $path ?>/assets/css/normalize.css">
   <link rel="stylesheet" href="<?= $path ?>/assets/css/main.css">
 </head>
@@ -29,7 +30,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <?php if (!isset($_SESSION['email'])) { ?>
+            <?php if (!isset($_SESSION['id'])) { ?>
             <li class="nav-item active">
               <a class="nav-link" href="<?= $path ?>/login">Se connecter</a>
             </li>
@@ -38,7 +39,7 @@
             </li>
             <?php 
           } ?>
-            <?php if(isset($_SESSION['email'])){ ?>
+            <?php if(isset($_SESSION['id'])){ ?>
               <li class="nav-item">
               <a class="nav-link" href="<?= $path ?>/recipe">Les recettes</a>
             </li>

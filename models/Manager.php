@@ -1,12 +1,12 @@
 <?php 
 class Manager 
 {
-  private $db;
+  protected $db;
 
     
   public function __construct()
   {
-    $this->setDb(Database::DB());
+    $this->db = Database::DB();
   }
 
   /**

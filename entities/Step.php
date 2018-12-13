@@ -1,83 +1,50 @@
 <?php 
-
+/**
+ * Class representing a step
+ */
 class Step{
-    protected $idStep,
-                $descriptionStep,
-                $recipeId;
-
-
-    public function __construct(array $array)
-    {
-        $this->hydrate($array);
-    }
-
-    public function hydrate(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $method = 'set' . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
+    /**
+     * @var int $id
+     * @var string $description
+     * @var int $recipe_id
+     */
+    protected $id,
+              $description,
+              $recipe_id;
     
     /**
-     * Get the value of idStep
+     * Get the value of id
+     * @return int
      */ 
-    public function getIdStep()
-    {
-        return $this->idStep;
-    }
+    public function getId() { return $this->id; }
 
     /**
-     * Set the value of idStep
-     *
-     * @return  self
+     * Set the value of id
+     * @return self
      */ 
-    public function setIdStep($idStep)
-    {
-        $this->idStep = $idStep;
-
-        return $this;
-    }
+    public function setId($id) { $this->id = $id; return $this; }
 
     /**
-     * Get the value of descriptionStep
+     * Get the value of description
+     * @return string
      */ 
-    public function getDescriptionStep()
-    {
-        return $this->descriptionStep;
-    }
+    public function getdescription() { return $this->description; }
 
     /**
-     * Set the value of descriptionStep
-     *
-     * @return  self
+     * Set the value of description
+     * @return self
      */ 
-    public function setDescriptionStep($descriptionStep)
-    {
-        $this->descriptionStep = $descriptionStep;
-
-        return $this;
-    }
+    public function setdescription($description) { $this->description = $description; return $this; }
 
     /**
-     * Get the value of recipeId
+     * Get the value of recipe_id
+     * @return int
      */ 
-    public function getRecipeId()
-    {
-        return $this->recipeId;
-    }
+    public function getRecipe_id() { return $this->recipe_id; }
 
     /**
-     * Set the value of recipeId
-     *
-     * @return  self
+     * Set the value of recipe_id
+     * @return self
      */ 
-    public function setRecipeId($recipeId)
-    {
-        $this->recipeId = $recipeId;
-
-        return $this;
-    }
+    public function setRecipe_id($recipe_id) { $this->recipe_id = $recipe_id; return $this; }
 }
