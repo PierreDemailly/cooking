@@ -2,7 +2,7 @@
 /**
  * Class representing a user
  */
-class User{
+class User extends Entity {
     /**
      * @var int $id 
      * @var string $pseudo

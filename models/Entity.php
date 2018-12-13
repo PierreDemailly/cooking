@@ -2,7 +2,7 @@
 /**
  * Class representing an Entity
  */
-Abstract class Entity
+class Entity
 {
   use Hydrator;
 
