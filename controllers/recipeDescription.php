@@ -13,17 +13,6 @@ if(isset($_POST['delete']))
     header('Location: '.$path.'/recipe');
 }
 
-
-if(isset($_POST['picture'])) {
-    //TODO: continuer le refactoring ici
-    $objPictureRecipe = new PictureRecipe([
-        "picture" => $_POST['picture'],
-        "id" => $_GET['id']
-    ]);
-    // var_dump($objPictureRecipe);
-    $recipeManager->addPictureRecipe($objPictureRecipe);
-}
-
 include './views/template/header.php';
 include "./views/recipeDescriptionVue.php";
 include './views/template/footer.php';
