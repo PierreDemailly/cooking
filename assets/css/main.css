@@ -123,6 +123,10 @@ form{
     opacity: 1!important;
 }
 
+.borderCard:hover{
+    border: 5px solid #daa24b!important;
+}
+
 img{
     width: 100%;;
 }
@@ -144,6 +148,7 @@ img{
 
 .card:hover{
     opacity: 1;
+   
 }
 
 img:hover{
@@ -153,7 +158,6 @@ img:hover{
 
 .card-body{
     background-color:black;
-    
     opacity: 1;
 }
 .card-body:hover{
@@ -167,6 +171,7 @@ img:hover{
 
 a{
     text-decoration: none;
+    
 }
 
 .fas{
@@ -185,7 +190,10 @@ a{
 }
 a:hover{
     text-decoration: none;
+         
+
 }
+
 
 /* ##################################################################### */
 /* ##########################   SMARTPHONE   ########################### */
@@ -204,6 +212,7 @@ a:hover{
       width: 100px;
       border: 1px solid gray;
     }
+
 }
 
 /* ##################################################################### */
