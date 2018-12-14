@@ -38,6 +38,7 @@ $comments = $recipeManager->getComments($_GET['id']);
 
 
 
+master
 include './views/template/header.php';
 include "./views/recipeDescriptionVue.php";
 include './views/template/footer.php';
