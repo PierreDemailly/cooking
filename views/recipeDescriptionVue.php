@@ -26,15 +26,39 @@
                 <?php endforeach; ?>
             
             </div>
-             
-            <form action="<?= $path ?>/recipe_description/<?= $_GET['id']; ?>" method="post">
+            <form method="post">
                 <input type="hidden" name="delete">
                 <button class="btn btn-danger" type="submit">Supprimer</button>
             </form>
+            <form class="col-md-12 d-flex flex-column my-5" method="post">
+                <textarea class="form-control" name="message" id="" cols="80" rows="5" placeholder="Votre commentaire :" required></textarea>
+                <button type="submit" class="btn font-weight-bold mt-2 justify-content-end btn-secondary" name="comment">Envoyer votre commentaire</button>
+            </form>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <th class="col-md-4 font-weight-bold">Autheurs</th>
+                    <th class="col-md-8 font-weight-bold">Commentaires</th>
+                    <th class="col-md-8 font-weight-bold">Date du commentaire</th>
+                </thead>
+                <tbody class="">
+                    <?php foreach($comments as $comment){ ?>
+                    <tr>
+                        <td class="text-center">
+                            <img class="avatarComment" src="<?= $path ?>/assets/img/avatars/<?php echo $userManager->getUser($comment->getUser_id())->getAvatar(); ?>" alt="">
+                            <?php echo $userManager->getUser($comment->getUser_id())->getPseudo(); ?>
+                        </td>
+                        <td><?php echo $comment->getComment(); ?></td>
+                        <td><?php echo $comment->getPost_date(); ?></td>
+                    </tr>
+                    <?php } ?>
+                    
+                </tbody>
+            </table>
         </div>
-                <div class="size absolute">
+        <div class="size absolute">
             <img src="<?= $path ?>/assets/img/avatars/<?= $author->getAvatar() ?>" alt="">
         </div>
-
+        
     </div>
+    
 </section>

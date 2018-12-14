@@ -165,6 +165,9 @@ img:hover {
   background-color: black;
 }
 
+.size_form{
+  width: 20px;
+}
 .flex-1{
   height: 100%;
   max-height: 150px;
@@ -183,6 +186,13 @@ a {
 
 .fas {
   color: #daa24b;
+}
+
+.avatarComment{
+  width: 100px;
+}
+.bg-daa24b{
+  background-color:#daa24b;
 }
 
 .fa {
