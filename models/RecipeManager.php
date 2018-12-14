@@ -34,17 +34,17 @@ class RecipeManager extends Manager {
     }
 
     public function addRecipeStep($getId, $postStep){
-        $req = $this->db->prepare('INSERT INTO step(description, id) VALUES(:description, :id)');
+        $req = $this->db->prepare('INSERT INTO step(description, recipe_id) VALUES(:description, :recipe_id)');
         $req->bindValue(':description', $postStep, PDO::PARAM_STR);
-        $req->bindValue(':id', $getId, PDO::PARAM_INT);
+        $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
         $req->execute();
     }
 
     public function addRecipeIngredient($postIngredient, $getId)
     {
-        $req = $this->db->prepare('INSERT INTO ingredient(descriptionIngredient, id) VALUES(:descriptionIngredient, :id)');
-        $req->bindValue(':descriptionIngredient', $postIngredient, PDO::PARAM_STR);
-        $req->bindValue(':id', $getId, PDO::PARAM_STR);
+        $req = $this->db->prepare('INSERT INTO ingredient(description, recipe_id) VALUES(:description, :recipe_id)');
+        $req->bindValue(':description', $postIngredient, PDO::PARAM_STR);
+        $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
         $req->execute();
     }
 
