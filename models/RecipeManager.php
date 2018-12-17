@@ -34,17 +34,17 @@ class RecipeManager extends Manager {
     }
 
     public function addRecipeStep($getId, $postStep){
-        $req = $this->db->prepare('INSERT INTO step(description, id) VALUES(:description, :id)');
+        $req = $this->db->prepare('INSERT INTO step(description, recipe_id) VALUES(:description, :recipe_id)');
         $req->bindValue(':description', $postStep, PDO::PARAM_STR);
-        $req->bindValue(':id', $getId, PDO::PARAM_INT);
+        $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
         $req->execute();
     }
 
     public function addRecipeIngredient($postIngredient, $getId)
     {
-        $req = $this->db->prepare('INSERT INTO ingredient(descriptionIngredient, id) VALUES(:descriptionIngredient, :id)');
-        $req->bindValue(':descriptionIngredient', $postIngredient, PDO::PARAM_STR);
-        $req->bindValue(':id', $getId, PDO::PARAM_STR);
+        $req = $this->db->prepare('INSERT INTO ingredient(description, recipe_id) VALUES(:description, :recipe_id)');
+        $req->bindValue(':description', $postIngredient, PDO::PARAM_STR);
+        $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
         $req->execute();
     }
 
@@ -92,22 +92,25 @@ class RecipeManager extends Manager {
 
     }
 
-    // public function addPictureRecipe(PictureRecipe $picture){
-    //     $req = $this->db->prepare('INSERT INTO pictures(picture, id) VALUES(:picture, :id)');
-    //     $req->bindValue(':picture', $picture->getPicture(), PDO::PARAM_INT);
-    //     $req->bindValue(':id', $picture->getid(), PDO::PARAM_STR);
-    //     $req->execute();
-    // }
+    public function addComment(Comment $comment){
+        $req = $this->db->prepare('INSERT INTO comments(comment, recipe_id, user_id, post_date) VALUES (:comment, :recipe_id, :user_id, NOW())');
+        $req->bindValue(':comment', $comment->getComment(), PDO::PARAM_STR);
+        $req->bindValue(':recipe_id', $comment->getRecipe_id(), PDO::PARAM_INT);
+        $req->bindValue(':user_id', $comment->getUser_id(), PDO::PARAM_INT);
+        $req->execute();
+    }
 
-    // public function getPictureRecipeByIdRecipe(){
-    //     $req = $this->db->query('SELECT * FROM pictures');
-    //     // $req->bindValue(':idRecipe', $idRecipe, PDO::PARAM_INT);
-    //     // $req->execute();
-    //     $dataPictureRecipe = $req->fetchAll(PDO::FETCH_ASSOC);
-    //     foreach($dataPictureRecipe as $picture){
-    //     $objPicture = new PictureRecipe($picture);
-    //     }
-    //     return $objPicture;
-    // }
+    public function getComments($getId){
+        $req = $this->db->prepare('SELECT * FROM comments WHERE recipe_id = :recipe_id');
+        $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
+        $req->execute();
+        while ($comment = $req->fetch()) {
+            $comments[] = new Comment($comment);
+        }
+        return $comments;
+        
+    }
+
+
 
 }
