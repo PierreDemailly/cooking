@@ -212,7 +212,22 @@ a:hover {
 
 }
 
-
+.input-number {
+  width:80px;
+}
+.form-title {
+  text-align: center;
+  font-size:2.4rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #ff9f43;
+}
+form label, form small {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #01a3a4;
+}
+.custom-file-label::after {
+  content:"Choisissez un fichier";
+}
 /* ##################################################################### */
 /* ##########################   SMARTPHONE   ########################### */
 /* ##################################################################### */
