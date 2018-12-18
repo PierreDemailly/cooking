@@ -9,42 +9,96 @@ class Ingredient extends Entity {
      * @var int $recipe_id
      */
     protected $id,
-              $description,
+              $content_ingredient,
+              $quantity,
               $recipe_id;
 
-    /**
-     * Get the value of id
-     * @return int
-     */ 
-    public function getId() { return $this->id; }
 
     /**
-     * Set the value of id
-     * @return self
+     * Get $recipe_id
+     *
+     * @return  int
      */ 
-    public function setId($id) { $this->id = $id; return $this; }
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * Get the value of description
-     * @return string
+     * Set $recipe_id
+     *
+     * @param  int  $id  $recipe_id
+     *
+     * @return  self
      */ 
-    public function getDescription() { return $this->description; }
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+
 
     /**
-     * Set the value of description
-     * @return self
+     * Get the value of quantity
      */ 
-    public function setDescription($description) { $this->description = $description; return $this; }
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set the value of quantity
+     *
+     * @return  self
+     */ 
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
 
     /**
      * Get the value of recipe_id
-     * @return int
      */ 
-    public function getRecipe_id() { return $this->id; }
+    public function getRecipe_id()
+    {
+        return $this->recipe_id;
+    }
 
     /**
-     * Set the value of id
-     * @return self
+     * Set the value of recipe_id
+     *
+     * @return  self
      */ 
-    public function setRecipe_id($id) { $this->id = $id; return $this; }
+    public function setRecipe_id($recipe_id)
+    {
+        $this->recipe_id = $recipe_id;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of content_ingredient
+     */ 
+    public function getContent_ingredient()
+    {
+        return $this->content_ingredient;
+    }
+
+    /**
+     * Set the value of content_ingredient
+     *
+     * @return  self
+     */ 
+    public function setContent_ingredient($content_ingredient)
+    {
+        $this->content_ingredient = $content_ingredient;
+
+        return $this;
+    }
 }

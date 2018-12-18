@@ -10,7 +10,7 @@
                     <p class="alert alert-warning"><?= $errors['recipe-title'] ?></p>
                 <?php endif; ?>
                 <div class="col-md-12 mx-auto form-group">
-                    <input class="form-control" type="text" id="recipe-title" name="recipe-title" placeholder="Exemple: Omelette aux champignons">
+                    <input class="form-control" type="text" id="recipe-title" name="name" placeholder="Exemple: Omelette aux champignons">
                     <label for="recipe-title"><small>Choisissez le titre de votre recette.</small></label>
                 </div>
                 <?php if(isset($errors['recipe-pic'])){ ?>
@@ -22,14 +22,15 @@
                 <div class="col-md-12 mx-auto form-group">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="recipe-pic" name="recipe-pic">
-                        <label class="custom-file-label" for="recipe-pic">tartecitron.jpg</label>
+                        <input type="file" class="custom-file-input" id="recipe-pic" name="picture">
+                        <label class="custom-file-label" for="recipe-pic"></label>
                     </div>
                 </div>
                     <small>Ajoutez une photo. / Format du fichier: JPG. / Taille maximale du fichier: 1MO</small>
                 </div>
                 <hr>
             <div class="row mx-auto">
+                <div class="col-md-4 mx-auto form-group">
                 <?php if (isset($errors['recipe-type'])) { ?>
 
                     <p class="alert alert-warning"><?= $errors['recipe-type'] ?></p>
@@ -37,8 +38,7 @@
 
                 <?php 
             } ?>
-                <div class="col-md-4 mx-auto form-group">
-                    <select class="form-control" name="recipe-type" id="recipe-type">
+                    <select class="form-control" name="type" id="recipe-type">
                         <option selected disabled>Type de plat</option>
                         <option value="starter">Entrée</option>
                         <option value="main-course">Plat</option>
@@ -52,6 +52,7 @@
                     </select>
                     <label for="recipe-type"><small>Choisissez le type de plat correspondant à votre recette.</small></label>
                 </div>
+                <div class="col-md-4 mx-auto form-group">
                 <?php if (isset($errors['recipe-difficulty'])) { ?>
 
                     <p class="alert alert-warning"><?= $errors['recipe-difficulty'] ?></p>
@@ -59,8 +60,7 @@
 
                 <?php 
             } ?>
-                <div class="col-md-4 mx-auto form-group">
-                    <select class="form-control" name="recipe-difficulty" id="recipe-difficulty">
+                    <select class="form-control" name="difficulty" id="recipe-difficulty">
                         <option selected disabled>Difficulté</option>
                         <option value="very-easy">Très facile</option>
                         <option value="easy">Facile</option>
@@ -69,14 +69,14 @@
                     </select>
                     <label for="recipe-difficulty"><small>Choisissez la difficulté de la recette.</small></label>
                 </div>
+                <div class="col-md-4 mx-auto form-group">
                 <?php if (isset($errors['recipe-cost'])) { ?>
 
                     <p class="alert alert-warning"><?= $errors['recipe-cost'] ?></p>
 
                 <?php 
             } ?>
-                <div class="col-md-4 mx-auto form-group">
-                    <select class="form-control" name="recipe-cost" id="recipe-cost">
+                    <select class="form-control" name="cost" id="recipe-cost">
                         <option selected disabled>Coût</option>
                         <option value="cheap">Bon marché</option>
                         <option value="average">Moyen</option>
@@ -87,7 +87,6 @@
                 </div>
                 </div>
 <hr>
-                <div class="row form-group">
                     <?php if (isset($errors['recipe-preparation-time'])) { ?>
 
                     <p class="alert alert-warning"><?= $errors['recipe-preparation-time'] ?></p>
@@ -95,8 +94,9 @@
 
                 <?php 
             } ?>
+                <div class="row form-group">
                     <div class="d-flex inline">
-                        <input class="form-control input-number" type="number" name="recipe-preparation-time">
+                        <input class="form-control input-number" type="number" name="preparation_time">
                         <small>Temps de préparation en minutes</small>
                     </div>
                     <?php if (isset($errors['recipe-cooking-time'])) { ?>
@@ -107,7 +107,7 @@
                 <?php 
             } ?>
                     <div class="d-flex inline">
-                        <input class="form-control input-number" type="number" name="recipe-cooking-time">
+                        <input class="form-control input-number" type="number" name="cooking_time">
                         <small>Temps de cuisson en minutes</small>
                     </div>
                 </div>
@@ -122,14 +122,14 @@
                 <div class="row mx-auto inline col-md-12 form-group">
                 
                         <p class="mt-3 mx-3">Pour</p>
-                        <input class="mr-2 col-md-2 form-control input-number" type="number" name="recipe-for-quantity" placeholder="x"> 
-                        <input class="col-md-8 form-control" type="text" name="recipe-for" placeholder="personne(s)">
+                        <input class="mr-2 col-md-2 form-control input-number" type="number" name="nb" placeholder="x"> 
+                        <input class="col-md-8 form-control" type="text" name="unite" placeholder="personne(s)">
                     
                     <small>Exemple: Pour 5 personnes, pour 1 litre, pour 6 pièces...</small>
                 </div>
 <hr>
                 <p class="text-center font-weight-bold">Ingrédients (quantité et intitulé)</p>
-                <div id="input_ingredientts">
+                <div id="input_ingredients">
                     <?php if (isset($errors['recipe-ingredient'])) { ?>
 
                     <p class="alert alert-warning"><?= $errors['recipe-ingredient'] ?></p>
@@ -137,9 +137,9 @@
                 <?php 
             } ?>
                    <div id="parent-1" class="form-group row mx-auto  col-md-12">
-                            <input class="col-md-3 form-control" type="text" name="recipe-ingredient-quantity" placeholder="Quantité">
+                            <input class="col-md-3 form-control" type="text" name="quantity" placeholder="Quantité">
                             <span class="mt-2 mx-2">de</span>
-                            <input class="col-md-6 form-control" type="text" name="recipe-ingredient" placeholder="Ingrédient">
+                            <input class="col-md-6 form-control" type="text" name="content_ingredient" placeholder="Ingrédient">
                             <button type="button" onclick="get_ingredient(this)" class="mx-2 btn btn-info">+</button>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
 
                     <div class="row">
                         <strong class="mt-2 mx-2">Étape 1:</strong>
-                        <textarea class="col-md-9 form-control" type="text" rows="1" name="recipe-step" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
+                        <textarea class="col-md-9 form-control" type="text" rows="1" name="content_step" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
                         <button type="button" onclick="get_step(this)" class="mx-2 col-md-1 btn btn-info">+</button>
                     </div>
                      
