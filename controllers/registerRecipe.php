@@ -2,13 +2,12 @@
 $recipeManager = new RecipeManager();
 if(isset($_POST['recipe-submit']))
 {
-    var_dump($_POST);
     $errors = array();
 
     if(empty($_POST['recipe-title']))
-        $errors['title'] = "Veuillez choisir le titre de votre recette";
+        $errors['recipe-title'] = "Veuillez choisir le titre de votre recette";
     elseif(strlen($_POST['recipe-title']) < 5 || strlen($_POST['recipe-title']) > 130)
-        $errors['title'] = "Votre titre doit compter entre 5 et 130 caractères";
+        $errors['recipe-title'] = "Votre titre doit compter entre 5 et 130 caractères";
 
     if(empty($_FILES['recipe-pic']['name']))
         $errors['recipe-pic'] = "Veuilez choisir une photo.";
@@ -100,3 +99,4 @@ if(isset($_POST['recipe-submit']))
 include './views/template/header.php';
 include "./views/registerRecipeVue.php";
 include './views/template/footer.php';
+var_dump($errors);

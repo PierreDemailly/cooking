@@ -14,7 +14,10 @@
                     <label for="recipe-title"><small>Choisissez le titre de votre recette.</small></label>
                 </div>
                 <?php if(isset($errors['recipe-pic'])){ ?>
-                    <p><?= $errors['recipe-pic'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-pic'] ?></p>
+   
+
                 <?php } ?>
                 <div class="col-md-12 mx-auto form-group">
                 <div class="input-group">
@@ -28,7 +31,10 @@
                 <hr>
             <div class="row mx-auto">
                 <?php if (isset($errors['recipe-type'])) { ?>
-                    <p><?= $errors['recipe-type'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-type'] ?></p>
+
+
                 <?php 
             } ?>
                 <div class="col-md-4 mx-auto form-group">
@@ -47,7 +53,10 @@
                     <label for="recipe-type"><small>Choisissez le type de plat correspondant à votre recette.</small></label>
                 </div>
                 <?php if (isset($errors['recipe-difficulty'])) { ?>
-                    <p><?= $errors['recipe-difficulty'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-difficulty'] ?></p>
+
+
                 <?php 
             } ?>
                 <div class="col-md-4 mx-auto form-group">
@@ -61,7 +70,9 @@
                     <label for="recipe-difficulty"><small>Choisissez la difficulté de la recette.</small></label>
                 </div>
                 <?php if (isset($errors['recipe-cost'])) { ?>
-                    <p><?= $errors['recipe-cost'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-cost'] ?></p>
+
                 <?php 
             } ?>
                 <div class="col-md-4 mx-auto form-group">
@@ -78,7 +89,10 @@
 <hr>
                 <div class="row form-group">
                     <?php if (isset($errors['recipe-preparation-time'])) { ?>
-                    <p><?= $errors['recipe-preparation-time'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-preparation-time'] ?></p>
+
+
                 <?php 
             } ?>
                     <div class="d-flex inline">
@@ -86,7 +100,10 @@
                         <small>Temps de préparation en minutes</small>
                     </div>
                     <?php if (isset($errors['recipe-cooking-time'])) { ?>
-                    <p><?= $errors['recipe-cooking-time'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-cooking-time'] ?></p>
+
+
                 <?php 
             } ?>
                     <div class="d-flex inline">
@@ -96,7 +113,9 @@
                 </div>
 <hr>
                 <?php if (isset($errors['recipe-for'])) { ?>
-                    <p><?= $errors['recipe-for'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-for'] ?></p>
+
                 <?php 
             } ?>
         
@@ -112,7 +131,9 @@
                 <p class="text-center font-weight-bold">Ingrédients (quantité et intitulé)</p>
                 <div id="input_ingredientts">
                     <?php if (isset($errors['recipe-ingredient'])) { ?>
-                    <p><?= $errors['recipe-ingredient'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-ingredient'] ?></p>
+
                 <?php 
             } ?>
                    <div id="parent-1" class="form-group row mx-auto  col-md-12">
@@ -126,7 +147,10 @@
 <hr>
                 <p class="text-center font-weight-bold">Préparation de la recette</p>
 <?php if (isset($errors['recipe-step'])) { ?>
-                    <p><?= $errors['recipe-step'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-step'] ?></p>
+
+
                 <?php 
             } ?>
                 <div  id="stepDiv" class="justify-content-center form-group">
@@ -140,7 +164,9 @@
                 </div>
 <hr>
 <?php if (isset($errors['recipe-drink'])) { ?>
-                    <p><?= $errors['recipe-drink'] ?></p>
+
+                    <p class="alert alert-warning"><?= $errors['recipe-drink'] ?></p>
+
                 <?php 
             } ?>
                 <div class="row justify-content-center form-group">
