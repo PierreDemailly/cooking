@@ -8,11 +8,33 @@ class Recipe extends Entity {
      * @var string $name 
      * @var string $picture 
      * @var int $user_id
+     * @var string $type
+     * @var string $difficulty
+     * @var string $cost
+     * @var int $preparation_time
+     * @var int $cooking_time
+     * @var string $quantity
      */
     protected $id,
               $name,
               $picture,
-              $user_id;
+              $user_id,
+              $type,
+              $difficulty,
+              $cost,
+              $preparation_time,
+              $cooking_time,
+              $quantity;
+
+    const TYPES = array(
+        'starter', 'main-course', 'dessert', 'side', 'appetizer', 'drink', 'candy', 'sauce', 'tip'
+    );
+    const DIFFICULTIES = array(
+        'very-easy', 'easy', 'medium', 'hard'
+    );
+    const COSTS = array(
+        'cheap', 'average', 'quite-expensive', 'expensive'
+    );
 
     /**
      * Get the value of id
@@ -61,4 +83,125 @@ class Recipe extends Entity {
      * @return self
      */ 
     public function setPicture($picture) { $this->picture = $picture; return $this; }
+
+              /**
+               * Get the value of type
+               */ 
+              public function getType()
+              {
+                            return $this->type;
+              }
+
+              /**
+               * Set the value of type
+               *
+               * @return  self
+               */ 
+              public function setType($type)
+              {
+                            $this->type = $type;
+
+                            return $this;
+              }
+
+              /**
+               * Get the value of difficulty
+               */ 
+              public function getDifficulty()
+              {
+                            return $this->difficulty;
+              }
+
+              /**
+               * Set the value of difficulty
+               *
+               * @return  self
+               */ 
+              public function setDifficulty($difficulty)
+              {
+                            $this->difficulty = $difficulty;
+
+                            return $this;
+              }
+
+              /**
+               * Get the value of cost
+               */ 
+              public function getCost()
+              {
+                            return $this->cost;
+              }
+
+              /**
+               * Set the value of cost
+               *
+               * @return  self
+               */ 
+              public function setCost($cost)
+              {
+                            $this->cost = $cost;
+
+                            return $this;
+              }
+
+              /**
+               * Get the value of preparation_time
+               */ 
+              public function getPreparation_time()
+              {
+                            return $this->preparation_time;
+              }
+
+              /**
+               * Set the value of preparation_time
+               *
+               * @return  self
+               */ 
+              public function setPreparation_time($preparation_time)
+              {
+                            $this->preparation_time = $preparation_time;
+
+                            return $this;
+              }
+            
+
+              /**
+               * Get the value of cooking_time
+               */ 
+              public function getCooking_time()
+              {
+                            return $this->cooking_time;
+              }
+
+              /**
+               * Set the value of cooking_time
+               *
+               * @return  self
+               */ 
+              public function setCooking_time($cooking_time)
+              {
+                            $this->cooking_time = $cooking_time;
+
+                            return $this;
+              }
+
+              /**
+               * Get the value of quantity
+               */ 
+              public function getQuantity()
+              {
+                            return $this->quantity;
+              }
+
+              /**
+               * Set the value of quantity
+               *
+               * @return  self
+               */ 
+              public function setQuantity($quantity)
+              {
+                            $this->quantity = $quantity;
+
+                            return $this;
+              }
 }
