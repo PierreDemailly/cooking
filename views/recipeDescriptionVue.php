@@ -10,7 +10,7 @@
                 <ul>
                 <?php foreach ($ingredients as $ingredient) : ?>
 
-                    <ol><i class="fa fa-carrot"></i><?php echo $ingredient->getDescription(); ?></ol>
+                    <ol><i class="fa fa-carrot"></i><?php echo $ingredient->getContent_ingredient(); ?></ol>
                 <?php endforeach; ?>
                 </ul>
             </div>
@@ -20,7 +20,7 @@
                 <i class="fas fa-utensils"></i>     
                 <!-- <img class="icon" src="<?= $path ?>/assets/img/chef.jpg" alt=""> -->
                 <ul>
-                    <?php echo $step->getDescription(); ?></li>
+                    <?php echo $step->getContent_step(); ?></li>
                 </ul>
                 <hr>
                 <?php endforeach; ?>
@@ -41,16 +41,19 @@
                     <th class="col-md-8 font-weight-bold">Date du commentaire</th>
                 </thead>
                 <tbody class="">
-                    <?php foreach($comments as $comment){ ?>
-                    <tr>
-                        <td class="text-center">
-                            <img class="avatarComment" src="<?= $path ?>/assets/img/avatars/<?php echo $userManager->getUser($comment->getUser_id())->getAvatar(); ?>" alt="">
-                            <?php echo $userManager->getUser($comment->getUser_id())->getPseudo(); ?>
-                        </td>
-                        <td><?php echo $comment->getComment(); ?></td>
-                        <td><?php echo $comment->getPost_date(); ?></td>
-                    </tr>
-                    <?php } ?>
+                    
+                    
+                        <?php foreach($comments as $comment){ ?>
+                        <tr>
+                            <td class="text-center">
+                                <img class="avatarComment" src="<?= $path ?>/assets/img/avatars/<?php echo $userManager->getUser($comment->getUser_id())->getAvatar(); ?>" alt="">
+                                <?php echo $userManager->getUser($comment->getUser_id())->getPseudo(); ?>
+                            </td>
+                            <td><?php echo $comment->getComment(); ?></td>
+                            <td><?php echo $comment->getPost_date(); ?></td>
+                        </tr>
+                        <?php } ?>
+                    
                     
                 </tbody>
             </table>

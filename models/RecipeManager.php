@@ -25,11 +25,16 @@ class RecipeManager extends Manager {
         }
         
     }
-    public function addRecipeName(Recipe $objRecipeName){
-        $req = $this->db->prepare('INSERT INTO recipe(name, picture, user_id) VALUES(:name_recipe, :picture, :user_id)');
-        $req->bindValue(':name_recipe', $objRecipeName->getname(), PDO::PARAM_STR);
-        $req->bindValue(':picture', $objRecipeName->getPicture(), PDO::PARAM_STR);
-        $req->bindValue(':user_id', $objRecipeName->getuser_id(), PDO::PARAM_STR);
+    public function addRecipe(Recipe $objRecipe, $sessionID){
+        $req = $this->db->prepare('INSERT INTO recipe(name, picture, user_id, type, difficulty, cost, preparation_time, cooking_time) VALUES(:name, :picture, :user_id, :type, :difficulty, :cost, :preparation_time, :cooking_time)');
+        $req->bindValue(':name', $objRecipe->getName(), PDO::PARAM_STR);
+        $req->bindValue(':picture', $objRecipe->getPicture(), PDO::PARAM_STR);
+        $req->bindValue(':user_id', $sessionID, PDO::PARAM_INT);
+        $req->bindValue(':type', $objRecipe->getType(), PDO::PARAM_INT);
+        $req->bindValue(':difficulty', $objRecipe->getDifficulty(), PDO::PARAM_STR);
+        $req->bindValue(':cost', $objRecipe->getCost(), PDO::PARAM_INT);
+        $req->bindValue(':preparation_time', $objRecipe->getPreparation_time(), PDO::PARAM_INT);
+        $req->bindValue(':cooking_time', $objRecipe->getCooking_time(), PDO::PARAM_INT);
         $req->execute();
     }
 
@@ -104,10 +109,16 @@ class RecipeManager extends Manager {
         $req = $this->db->prepare('SELECT * FROM comments WHERE recipe_id = :recipe_id');
         $req->bindValue(':recipe_id', $getId, PDO::PARAM_INT);
         $req->execute();
-        while ($comment = $req->fetch()) {
-            $comments[] = new Comment($comment);
+        $data_comments = $req->fetchAll(PDO::FETCH_ASSOC);
+        if($data_comments==FALSE){
+            return;
+        }else{
+            foreach($data_comments as $comment){
+                $comments[] = new Comment($comment);
+                
+            }
+            return $comments;
         }
-        return $comments;
         
     }
 
