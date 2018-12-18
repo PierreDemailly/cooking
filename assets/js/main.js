@@ -16,7 +16,7 @@ function get_ingredient(button) {
     var inputQuantité = document.createElement('input');
     inputQuantité.setAttribute('class', 'col-md-3 form-control');
     inputQuantité.setAttribute('id', 'quantité-'+i);
-    inputQuantité.setAttribute('name', 'recipe-ingredien-quantity');
+    inputQuantité.setAttribute('name', 'recipe-ingredient-quantity');
     newDiv.appendChild(inputQuantité);
 
     var span = document.createElement('span');
@@ -28,7 +28,7 @@ function get_ingredient(button) {
     var inputIngredient = document.createElement('input');
     inputIngredient.setAttribute('class', 'col-md-6 form-control');
     inputIngredient.setAttribute('id', 'ingredient-' + i);
-    inputIngredient.setAttribute('name', 'recipe-ingredien');
+    inputIngredient.setAttribute('name', 'recipe-ingredient');
     newDiv.appendChild(inputIngredient);
 
     var btnAdd = document.createElement('button');
