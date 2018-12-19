@@ -16,7 +16,7 @@ function get_ingredient(button) {
     var inputQuantité = document.createElement('input');
     inputQuantité.setAttribute('class', 'col-md-3 form-control');
     inputQuantité.setAttribute('id', 'quantité-'+i);
-    inputQuantité.setAttribute('name', 'recipe-ingredient-quantity');
+    inputQuantité.setAttribute('name', 'quantity[]');
     newDiv.appendChild(inputQuantité);
 
     var span = document.createElement('span');
@@ -28,7 +28,7 @@ function get_ingredient(button) {
     var inputIngredient = document.createElement('input');
     inputIngredient.setAttribute('class', 'col-md-6 form-control');
     inputIngredient.setAttribute('id', 'ingredient-' + i);
-    inputIngredient.setAttribute('name', 'recipe-ingredient');
+    inputIngredient.setAttribute('name', 'content_ingredient[]');
     newDiv.appendChild(inputIngredient);
 
     var btnAdd = document.createElement('button');
@@ -68,7 +68,7 @@ function get_step(buton) {
     textArea = document.createElement('textarea');
     textArea.setAttribute('class', 'col-md-9 form-control');
     textArea.setAttribute('type', 'text');
-    textArea.setAttribute('name', 'recipe-step');
+    textArea.setAttribute('name', 'content_step[]');
     textArea.setAttribute('rows' ,'1');
     textArea.setAttribute('placeholder', 'Exemple: Mélanger le lait avec la farine');
     parent.appendChild(textArea);

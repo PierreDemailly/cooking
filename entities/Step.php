@@ -9,42 +9,73 @@ class Step extends Entity{
      * @var int $recipe_id
      */
     protected $id,
-              $description,
+              $content_step,
               $recipe_id;
     
-    /**
-     * Get the value of id
-     * @return int
-     */ 
-    public function getId() { return $this->id; }
 
     /**
-     * Set the value of id
-     * @return self
+     * Get $recipe_id
+     *
+     * @return  int
      */ 
-    public function setId($id) { $this->id = $id; return $this; }
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * Get the value of description
-     * @return string
+     * Set $recipe_id
+     *
+     * @param  int  $id  $recipe_id
+     *
+     * @return  self
      */ 
-    public function getDescription() { return $this->description; }
+    public function setId(int $id)
+    {
+        $this->id = $id;
 
-    /**
-     * Set the value of description
-     * @return self
-     */ 
-    public function setdescription($description) { $this->description = $description; return $this; }
+        return $this;
+    }
+
+
 
     /**
      * Get the value of recipe_id
-     * @return int
      */ 
-    public function getRecipe_id() { return $this->recipe_id; }
+    public function getRecipe_id()
+    {
+        return $this->recipe_id;
+    }
 
     /**
      * Set the value of recipe_id
-     * @return self
+     *
+     * @return  self
      */ 
-    public function setRecipe_id($recipe_id) { $this->recipe_id = $recipe_id; return $this; }
+    public function setRecipe_id($recipe_id)
+    {
+        $this->recipe_id = $recipe_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of content_step
+     */ 
+    public function getContent_step()
+    {
+        return $this->content_step;
+    }
+
+    /**
+     * Set the value of content_step
+     *
+     * @return  self
+     */ 
+    public function setContent_step($content_step)
+    {
+        $this->content_step = $content_step;
+
+        return $this;
+    }
 }
