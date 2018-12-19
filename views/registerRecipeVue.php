@@ -21,11 +21,7 @@
                 <?php } ?>
                 <div class="col-md-12 mx-auto form-group">
                 <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="recipe-pic" name="picture">
-                        <label class="custom-file-label" for="recipe-pic"></label>
-                    </div>
-                </div>
+                    <input class="btn-dark mx-auto mb-2 rounded py-1 px-2" type="file" name="picture">
                     <small>Ajoutez une photo. / Format du fichier: JPG. / Taille maximale du fichier: 1MO</small>
                 </div>
                 <hr>
@@ -137,9 +133,9 @@
                 <?php 
             } ?>
                    <div id="parent-1" class="form-group row mx-auto  col-md-12">
-                            <input class="col-md-3 form-control" type="text" name="quantity" placeholder="Quantité">
+                            <input class="col-md-3 form-control" type="text" name="quantity[]" placeholder="Quantité">
                             <span class="mt-2 mx-2">de</span>
-                            <input class="col-md-6 form-control" type="text" name="content_ingredient" placeholder="Ingrédient">
+                            <input class="col-md-6 form-control" type="text" name="content_ingredient[]" placeholder="Ingrédient">
                             <button type="button" onclick="get_ingredient(this)" class="mx-2 btn btn-info">+</button>
                     </div>
                 </div>
@@ -157,7 +153,7 @@
 
                     <div class="row">
                         <strong class="mt-2 mx-2">Étape 1:</strong>
-                        <textarea class="col-md-9 form-control" type="text" rows="1" name="content_step" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
+                        <textarea class="col-md-9 form-control" type="text" rows="1" name="content_step[]" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
                         <button type="button" onclick="get_step(this)" class="mx-2 col-md-1 btn btn-info">+</button>
                     </div>
                      

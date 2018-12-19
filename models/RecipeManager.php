@@ -115,7 +115,6 @@ class RecipeManager extends Manager {
         }else{
             foreach($data_comments as $comment){
                 $comments[] = new Comment($comment);
-                
             }
             return $comments;
         }
