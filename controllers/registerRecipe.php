@@ -50,21 +50,17 @@ if(isset($_POST['recipe-submit']))
     
     if(empty($_POST['quantity']) || empty($_POST['content_ingredient']))
         $errors['recipe-ingredient'] = "Ingrédient invalide";
-    else 
-    {
-        if(is_array($_POST['quantity']))
-        {
 
-            foreach($_POST['quantity'] as $k => $v)
-            {
-                if(empty($_POST['content_ingredient'][$k]) or empty($_POST['quantity']))
-                return;
-                else 
-                $ingredients[] = [$k => $v];
-            }
+    if(is_array($_POST['quantity'])){
+        foreach($_POST['quantity'] as $k => $v){
+            $quantitys[] = [$k => $v];
         }
-        else 
-            $ingredients[] = $_POST['quantity'];
+    }
+
+    if(is_array($_POST['content_ingredient'])){
+        foreach($_POST['content_ingredient'] as $k => $v){
+            $ingredients[] = [$k => $v];
+        }
     }
 
     if(empty($_POST['content_step']))
@@ -83,7 +79,8 @@ if(isset($_POST['recipe-submit']))
             }
         }
         else 
-            $steps[] = $_POST['content_step'];
+            
+            $steps = $_POST['content_step'];
     }
 
     if(empty($_POST['recipe-drink']))
@@ -91,6 +88,29 @@ if(isset($_POST['recipe-submit']))
     if(strlen($_POST['recipe-drink']) < 3 OR strlen($_POST['recipe-drink'] > 50))
         $errors['recipe-drink'] = "Boisson invalide";
 
+// Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur//
+    if (isset($_FILES['picture']) and $_FILES['picture']['error'] == 0) {
+            // Testons si le fichier n'est pas trop gros//
+        if ($_FILES['picture']['size'] <= 1000000) {
+                    // Testons si l'extension est autorisée//
+            $infosfichier = pathinfo($_FILES['picture']['name']);
+            $extension_upload = $infosfichier['extension'];
+            $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+            if (in_array($extension_upload, $extensions_autorisees)) {
+                            // On peut valider le fichier et le stocker définitivement//
+                move_uploaded_file($_FILES['picture']['tmp_name'], './assets/img/' . basename($_FILES['picture']['name']));
+                            // echo "L'envoi a bien été effectué !";
+                
+            } else {
+                echo "le format du fichier n'est pas autorisé(jpg, jpeg, gif, png)";
+            }
+        } else {
+            echo "la taille du fichier est superieur a 1mo";
+        }
+    } else {
+        echo "probleme lors de l'envoi";
+    }
+        
     if(empty($errors))
     {
         $recipe = new Recipe([
@@ -107,22 +127,27 @@ if(isset($_POST['recipe-submit']))
         $recipeManager->addRecipe($recipe, $_SESSION['id']);
         $lastRecipe = $recipeManager->getLastRecipeName();
         
-        $ingredient = new Ingredient([
-            'content_ingredient'=>$_POST['content_ingredient'],
-            'quantity'=>$_POST['quantity'],
-            'recipe_id'=> $lastRecipe->getId()
-        ]);
-        $ingredientManager->addIngredient($ingredient);
+        foreach($ingredients as $ingredient){
+            
+            $ingredient = new Ingredient([
+                'content_ingredient'=> $ingredient,
+                'quantity'=> $quantitys,
+                'recipe_id'=> $lastRecipe->getId()
+            ]);
+            $ingredientManager->addIngredient($ingredient);
+        }
+            var_dump($ingredients);
+            foreach($steps as $step){
+            $stepObj = new Step([
+                'content_step'=> $step,
+                'recipe_id' => $lastRecipe->getId()
+            ]);
+            $stepManager->addStep($stepObj);
+        }
 
-        $step = new Step([
-            'content_step'=>$_POST['content_step'],
-            'recipe_id' => $lastRecipe->getId()
-        ]);
-
-        $stepManager->addStep($step);
     }
     
-var_dump($errors);
+var_dump($_POST['content_step']);
 }   
 
 include './views/template/header.php';
