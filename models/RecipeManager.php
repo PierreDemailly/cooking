@@ -14,14 +14,14 @@ class RecipeManager extends Manager {
         return $recipes;
     }
 
-    public function getLastRecipeName(){
+    public function getLastRecipe(){
         $req = $this->db->query('SELECT * FROM recipe ORDER BY id DESC LIMIT 1');
         $data_recipes = $req->fetch(PDO::FETCH_ASSOC);
         if($data_recipes==FALSE){
             return;
         }else{
-            $object_last_recipe = new Recipe($data_recipes);
-            return $object_last_recipe;
+            $recipe = new Recipe($data_recipes);
+            return $recipe;
         }
         
     }

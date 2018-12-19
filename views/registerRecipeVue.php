@@ -10,7 +10,7 @@
                     <p class="alert alert-warning"><?= $errors['recipe-title'] ?></p>
                 <?php endif; ?>
                 <div class="col-md-12 mx-auto form-group">
-                    <input class="form-control" type="text" id="recipe-title" name="name" placeholder="Exemple: Omelette aux champignons">
+                    <input class="form-control" type="text" id="recipe-title" name="name" value="TITRE DE LA RECETTE" placeholder="Exemple: Omelette aux champignons">
                     <label for="recipe-title"><small>Choisissez le titre de votre recette.</small></label>
                 </div>
                 <?php if(isset($errors['recipe-pic'])){ ?>
@@ -35,8 +35,8 @@
                 <?php 
             } ?>
                     <select class="form-control" name="type" id="recipe-type">
-                        <option selected disabled>Type de plat</option>
-                        <option value="starter">Entrée</option>
+                        <option disabled>Type de plat</option>
+                        <option selected value="starter">Entrée</option>
                         <option value="main-course">Plat</option>
                         <option value="dessert">Dessert</option>
                         <option value="side">Accompagnement</option>
@@ -57,8 +57,8 @@
                 <?php 
             } ?>
                     <select class="form-control" name="difficulty" id="recipe-difficulty">
-                        <option selected disabled>Difficulté</option>
-                        <option value="very-easy">Très facile</option>
+                        <option disabled>Difficulté</option>
+                        <option selected value="very-easy">Très facile</option>
                         <option value="easy">Facile</option>
                         <option value="medium">Moyen</option>
                         <option value="hard">Difficile</option>
@@ -73,8 +73,8 @@
                 <?php 
             } ?>
                     <select class="form-control" name="cost" id="recipe-cost">
-                        <option selected disabled>Coût</option>
-                        <option value="cheap">Bon marché</option>
+                        <option disabled>Coût</option>
+                        <option selected value="cheap">Bon marché</option>
                         <option value="average">Moyen</option>
                         <option value="quite-expensive">Assez cher</option>
                         <option value="expensive">Très cher</option>
@@ -92,7 +92,7 @@
             } ?>
                 <div class="row form-group">
                     <div class="d-flex inline">
-                        <input class="form-control input-number" type="number" name="preparation_time">
+                        <input value="60" class="form-control input-number" type="number" name="preparation_time">
                         <small>Temps de préparation en minutes</small>
                     </div>
                     <?php if (isset($errors['recipe-cooking-time'])) { ?>
@@ -103,7 +103,7 @@
                 <?php 
             } ?>
                     <div class="d-flex inline">
-                        <input class="form-control input-number" type="number" name="cooking_time">
+                        <input value="60" class="form-control input-number" type="number" name="cooking_time">
                         <small>Temps de cuisson en minutes</small>
                     </div>
                 </div>
@@ -118,8 +118,8 @@
                 <div class="row mx-auto inline col-md-12 form-group">
                 
                         <p class="mt-3 mx-3">Pour</p>
-                        <input class="mr-2 col-md-2 form-control input-number" type="number" name="nb" placeholder="x"> 
-                        <input class="col-md-8 form-control" type="text" name="unite" placeholder="personne(s)">
+                        <input class="mr-2 col-md-2 form-control input-number" type="number" name="nb" value="5" placeholder="x"> 
+                        <input class="col-md-8 form-control" type="text" name="unite" value="pièces" placeholder="personne(s)">
                     
                     <small>Exemple: Pour 5 personnes, pour 1 litre, pour 6 pièces...</small>
                 </div>
@@ -133,9 +133,9 @@
                 <?php 
             } ?>
                    <div id="parent-1" class="form-group row mx-auto  col-md-12">
-                            <input class="col-md-3 form-control" type="text" name="quantity[]" placeholder="Quantité">
+                            <input class="col-md-3 form-control" type="text" name="quantity[]" value="5 cl" placeholder="Quantité">
                             <span class="mt-2 mx-2">de</span>
-                            <input class="col-md-6 form-control" type="text" name="content_ingredient[]" placeholder="Ingrédient">
+                            <input class="col-md-6 form-control" type="text" name="content_ingredient[]" value="miel" placeholder="Ingrédient">
                             <button type="button" onclick="get_ingredient(this)" class="mx-2 btn btn-info">+</button>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
 
                     <div class="row">
                         <strong class="mt-2 mx-2">Étape 1:</strong>
-                        <textarea class="col-md-9 form-control" type="text" rows="1" name="content_step[]" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
+                        <textarea class="col-md-9 form-control" type="text" rows="1" value="ETAPE 1 MEN BALEC FRERE JUSTE DU TEXTE" name="content_step[]" placeholder="Exemple: Mélanger le lait avec la farine"></textarea>
                         <button type="button" onclick="get_step(this)" class="mx-2 col-md-1 btn btn-info">+</button>
                     </div>
                      
